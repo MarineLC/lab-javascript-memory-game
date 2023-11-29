@@ -26,9 +26,16 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
+
     // ... write your code here
     this.pairsClicked += 1;
+    let pc = document.getElementById('pairs-clicked');
+         pc.innerHTML = this.pairsClicked;
+
+         
     if(card1 == card2){
+      let pg = document.getElementById('pairs-guessed');
+         pg.innerHTML = this.pairsGuessed;
       this.pairsGuessed +=1;
       return true;
     }else{

@@ -67,15 +67,11 @@ window.addEventListener('load', (event) => {
       const cardName1 = card1.getAttribute('data-card-name');
       const cardName2 = card2.getAttribute('data-card-name');
 
-
-
       memoryGame.pickedCards=[];
 
       // check if the cards are paired
         if(memoryGame.checkIfPair(cardName1, cardName2)){
-          memoryGame.pairsClicked++;
-          card1.setAttribute('find', 'pair');
-          card2.setAttribute('find', 'pair');
+          
         }else {
           setTimeout(() => {
            toggle(card1.children[0],["front", "back"]);
