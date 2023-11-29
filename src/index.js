@@ -27,6 +27,11 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+function toggle(element, classes) {
+  classes.forEach(className => 
+    element.classList.toggle(className));
+}
+
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -46,6 +51,23 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      
+      toggle(card.children[0],["back", "front"]);
+      toggle(card.children[1],["back", "front"]);
+
+      if(memoryGame.pairsClicked.length === 2){
+        const card1 = card.children[0].getAttribute('name');
+        const card2 = card.children[1].getAttribute('name');
+        if(memoryGame.checkIfPair(card1, card2)){
+            
+        }
+      }else if(!memoryGame.checkIfFinished()){
+          setTimeout(() => {
+            toggle(card.children[0],["front", "back"]);
+           toggle(card.children[1],["front", "back"]);
+        }, 1000);
+      }
+      
     });
   });
 });
