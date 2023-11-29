@@ -27,6 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+
 function toggle(element, classes) {
   classes.forEach(className => 
     element.classList.toggle(className));
@@ -51,23 +52,43 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      //add the card to the pickedCards array
+      memoryGame.pickedCards.push(card);
       
       toggle(card.children[0],["back", "front"]);
       toggle(card.children[1],["back", "front"]);
+      
 
-      if(memoryGame.pairsClicked.length === 2){
-        const card1 = card.children[0].getAttribute('name');
-        const card2 = card.children[1].getAttribute('name');
-        if(memoryGame.checkIfPair(card1, card2)){
-            
-        }
-      }else if(!memoryGame.checkIfFinished()){
+      if(memoryGame.pickedCards.length == 2){
+
+      const card1 = memoryGame.pickedCards[0];
+      const card2 = memoryGame.pickedCards[1];
+
+      const cardName1 = card1.getAttribute('data-card-name');
+      const cardName2 = card2.getAttribute('data-card-name');
+
+
+
+      memoryGame.pickedCards=[];
+
+      // check if the cards are paired
+        if(memoryGame.checkIfPair(cardName1, cardName2)){
+          memoryGame.pairsClicked++;
+          card1.setAttribute('find', 'pair');
+          card2.setAttribute('find', 'pair');
+        }else {
           setTimeout(() => {
-            toggle(card.children[0],["front", "back"]);
-           toggle(card.children[1],["front", "back"]);
+           toggle(card1.children[0],["front", "back"]);
+           toggle(card1.children[1],["front", "back"]);
+           toggle(card2.children[0],["front", "back"]);
+           toggle(card2.children[1],["front", "back"]);
+           
         }, 1000);
       }
-      
+    }
+      if(memoryGame.checkIfFinished()){
+
+      }
     });
   });
 });
