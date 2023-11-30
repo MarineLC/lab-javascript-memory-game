@@ -35,8 +35,8 @@ class MemoryGame {
          
     if(card1 == card2){
       let pg = document.getElementById('pairs-guessed');
+        this.pairsGuessed +=1;
          pg.innerHTML = this.pairsGuessed;
-      this.pairsGuessed +=1;
       return true;
     }else{
       return false;

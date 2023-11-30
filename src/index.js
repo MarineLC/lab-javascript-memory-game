@@ -71,7 +71,7 @@ window.addEventListener('load', (event) => {
 
       // check if the cards are paired
         if(memoryGame.checkIfPair(cardName1, cardName2)){
-          
+          //nothing to do
         }else {
           setTimeout(() => {
            toggle(card1.children[0],["front", "back"]);
